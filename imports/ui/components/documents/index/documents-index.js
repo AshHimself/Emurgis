@@ -7,10 +7,8 @@ import { Problems } from "/imports/api/documents/both/problemCollection.js"
 import "./documents-index.html"
 import "./documents-index-item/documents-index-item.js"
 
-Template.documentsIndex.onCreated(function() {
-  function bodyOnCreated() {
+Template.documentsIndex.onCreated(function bodyOnCreated() {
       this.subscribe("problems")
-  }
 })
 
 Template.documentsIndex.onRendered(function() {})

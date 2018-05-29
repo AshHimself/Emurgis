@@ -1,39 +1,35 @@
 <template name="documentsIndex">
+    <div class="documents-index">
+        <div class="card">
+            <div class="card-body">
+                <h1>Problems</h1>
+                <a class="btn btn-primary" href="{{pathFor 'documentNew'}}" role="button">New Problem</a> {{#if Template.subscriptionsReady}} 
+                {{#if problems.count}}
 
-  <div class="documents-index">
-    <div class="card">
-      <div class="card-body">
-        <h1>Problems</h1>
-        <a class="btn btn-primary" href="{{pathFor 'documentNew'}}" role="button">New Problem</a>
-
-        {{#if Template.subscriptionsReady}}
-          {{#if problems.count}}
-            <table class="table table-hover mt-3">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Content</th>
-                  <th>Updated</th>
-                  <th>Created</th>
-                  <th class="text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each document in problems}}
-                  {{> documentsIndexItem document=document}}
-                {{/each}}
-              </tbody>
-            </table>
-          {{else}}
-            <div class="mt-3">
-              {{> emptyResult text="No documents added yet" description="Click the button to add some..." icon=""}}
+                <table class="table table-hover mt-3">
+                    <thead>
+                        <tr>
+                            <th>Summary</th>
+                            <th>Description</th>
+                            <th>Created</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {{#each problems}}
+                        <tr class="documents-index-item">
+                            <td scope="row">{{summary}}</td>
+                            <td>{{description}}</td>
+                            <td>{{showPrettyTimestamp createdAt}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <div class="mt-3">
+                    {{> emptyResult text="No problems added yet" description="Click the button to add some..." icon=""}}
+                </div>
+                {{/if}} {{else}} {{> loader}} {{/if}}
             </div>
-          {{/if}}
-        {{else}}
-          {{> loader}}
-        {{/if}}
-      </div>
+        </div>
     </div>
-  </div>
-
 </template>
